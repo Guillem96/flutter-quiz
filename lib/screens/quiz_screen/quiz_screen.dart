@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz/models/question.dart';
 import 'package:flutter_quiz/models/quiz.dart';
-import 'package:flutter_quiz/screens/quiz_screen/widgets/questionText.dart';
+import 'package:flutter_quiz/screens/quiz_screen/widgets/question_text.dart';
 import 'package:flutter_quiz/screens/quiz_screen/widgets/true_false_button.dart';
 
 class QuizPage extends StatefulWidget {
@@ -12,6 +12,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+
   @override
   Widget build(BuildContext context) {
     return Stack(
