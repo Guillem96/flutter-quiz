@@ -31,6 +31,7 @@ class _QuestionTextState extends State<QuestionText> with SingleTickerProviderSt
 
     _fontSizeAnimationController.forward();
   }
+  
   @override
   Widget build(BuildContext context) {
     return new Material(

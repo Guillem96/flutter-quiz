@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz/models/question.dart';
 import 'package:flutter_quiz/models/quiz.dart';
+import 'package:flutter_quiz/screens/quiz_screen/widgets/correct_wrong_overlay.dart';
 import 'package:flutter_quiz/screens/quiz_screen/widgets/question_text.dart';
 import 'package:flutter_quiz/screens/quiz_screen/widgets/true_false_button.dart';
 
@@ -16,15 +17,17 @@ class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      fit: StackFit.expand, // Expand childrens to full screen
       //> Like column, but stacks children on top of each other
       children: <Widget>[
         new Column(
           children: <Widget>[
-            new TrueFalseButton(true, () => widget.quiz.answer(true)),
+            new TrueFalseButton(true, () => generateNextQuestion(true)),
             new QuestionText(widget.quiz.current.question),
-            new TrueFalseButton(false, () => widget.quiz.answer(false)),
+            new TrueFalseButton(false, () => generateNextQuestion(false)),
           ],
-        )
+        ),
+        new CorrectWrongOverlay(false)
       ],
     );
   }
