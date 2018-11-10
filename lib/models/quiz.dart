@@ -8,19 +8,27 @@ class Quiz {
   Quiz(this._questions) {
     _questions.shuffle();
     _current = 0;
+    _score = 0;
   }
 
   int             get score     => _score;
   Question        get current   => _questions[_current];
   List<Question>  get questions => _questions;
   int             get length    => _questions.length;
+  bool            get hasNext   => _current < _questions.length;
 
   Question get next {
+    if (_current == _questions.length)
+      return null;
+
+    Question following =  _questions[_current];
     _current++;
-    return _current == _questions.length ? null : _questions[_current];
+    
+    return following;
   }
 
-  void answer(bool isCoorect) {
-    if (isCoorect) _score++;
+  void updateScore(bool isCorrect) {
+    if (isCorrect) 
+      _score++;
   }
 }

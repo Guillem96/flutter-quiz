@@ -6,13 +6,28 @@ import 'package:flutter_quiz/screens/quiz_screen/widgets/question_text.dart';
 import 'package:flutter_quiz/screens/quiz_screen/widgets/true_false_button.dart';
 
 class QuizPage extends StatefulWidget {
-  final Quiz quiz = new Quiz([new Question("Is Sugar Glider an Animal?", true)]);
-
   @override
   _QuizPageState createState() => _QuizPageState();
 }
 
 class _QuizPageState extends State<QuizPage> {
+  Quiz quiz = new Quiz([
+    new Question("Is Sugar Glider an Animal?", true),
+    new Question("Is Elon Musk a human?", false),
+    new Question("Is pizza healty?", false),
+    new Question("Is Flutter awesome?", true)
+  ]);
+
+  Question current;
+  bool isCorrect;
+  bool showOverlay = false;
+
+  @override
+  void initState() {
+    current = quiz.next;
+    isCorrect = false;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +38,31 @@ class _QuizPageState extends State<QuizPage> {
         new Column(
           children: <Widget>[
             new TrueFalseButton(true, () => generateNextQuestion(true)),
-            new QuestionText(widget.quiz.current.question),
+            new QuestionText(current.question),
             new TrueFalseButton(false, () => generateNextQuestion(false)),
           ],
         ),
-        new CorrectWrongOverlay(false)
+        showOverlay
+            ? new CorrectWrongOverlay(
+                isCorrect,
+                this.onOverlayClosed
+              )
+            : new Container() //> Empty container to hide
       ],
     );
   }
 
-  void generateNextQuestion(bool answer) {
-    widget.quiz.answer(true);
+  void onOverlayClosed() {
     setState(() {
-      widget.quiz.next;
+      showOverlay = false;
+      if (quiz.hasNext) current = quiz.next;
     });
+  }
+
+  void generateNextQuestion(bool answer) {
+    isCorrect = current.answer(answer);
+    quiz.updateScore(isCorrect);
+
+    this.setState(() => showOverlay = true);
   }
 }
