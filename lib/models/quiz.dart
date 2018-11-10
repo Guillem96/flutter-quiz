@@ -1,11 +1,11 @@
 import 'package:flutter_quiz/models/question.dart';
 
-class Questions {
+class Quiz {
   final List<Question> _questions;
   int _current;
   int _score;
 
-  Questions(this._questions) {
+  Quiz(this._questions) {
     _questions.shuffle();
     _current = 0;
   }
