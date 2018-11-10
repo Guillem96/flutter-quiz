@@ -1,6 +1,10 @@
-# flutter_quiz
+# Flutter Quiz
 
-A new Flutter project.
+Flutter tutorial.
+
+![HomePage](img/home.png)
+![QuestionPage](img/question.png)
+![ScorePage](img/score.png)
 
 ## Getting Started
 
