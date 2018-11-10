@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quiz/screens/quiz_screen/quiz_screen.dart';
 
 class HomePage extends StatelessWidget {
   @override
