@@ -4,7 +4,7 @@ import 'package:flutter_quiz/screens/quiz_screen/quiz_screen.dart';
 import 'package:flutter_quiz/screens/score_screen/score_screen.dart';
 
 class Router {
-  static Map<String, String> params;
+  static Map<String, String> params = new Map();
   
   static var routes = <String, WidgetBuilder> {
     '/quiz_page': (_) => new QuizPage(),

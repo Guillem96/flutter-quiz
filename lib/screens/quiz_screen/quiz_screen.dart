@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz/models/question.dart';
 import 'package:flutter_quiz/models/quiz.dart';
+import 'package:flutter_quiz/routes.dart';
 import 'package:flutter_quiz/screens/quiz_screen/widgets/correct_wrong_overlay.dart';
 import 'package:flutter_quiz/screens/quiz_screen/widgets/question_text.dart';
 import 'package:flutter_quiz/screens/quiz_screen/widgets/true_false_button.dart';
@@ -55,7 +56,13 @@ class _QuizPageState extends State<QuizPage> {
   void onOverlayClosed() {
     setState(() {
       showOverlay = false;
-      if (quiz.hasNext) current = quiz.next;
+      if (quiz.hasNext) 
+        current = quiz.next;
+      else {
+        Router.params['total'] = quiz.length.toString();
+        Router.params['correct'] = quiz.score.toString();
+        Navigator.of(context).popAndPushNamed('/score_page');
+      }
     });
   }
 
