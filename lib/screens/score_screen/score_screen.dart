@@ -29,6 +29,12 @@ class _ScorePageState extends State<ScorePage> with SingleTickerProviderStateMix
   }
 
   @override
+  void dispose() {
+    _fontSizeAnimationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     tStyle = new TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 60.0 * _fontSizeAnimation.value);
     return new Material(
